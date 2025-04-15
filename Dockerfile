@@ -24,6 +24,9 @@ COPY . /app
 # Installer les dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
 
+EXPOSE 10000
+
+
 # Rendre Stockfish exécutable visible dans l'app
 ENV STOCKFISH_EXEC=/stockfish/src/stockfish
 
