@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: chess1984
-    env: docker
-    plan: free
