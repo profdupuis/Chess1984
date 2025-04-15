@@ -31,4 +31,4 @@ EXPOSE 10000
 ENV STOCKFISH_EXEC=/stockfish/src/stockfish
 
 # Commande de démarrage
-CMD ["gunicorn", "-b", "0.0.0.0:$PORT", "app:app"]
+CMD gunicorn app:app --bind 0.0.0.0:$PORT
