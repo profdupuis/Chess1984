@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+    color: #00ff00;
+    font-family: monospace;
+    padding: 20px;
+}
+#terminal {
+    max-width: 800px;
+    margin: auto;
+}
+#output {
+    white-space: pre-wrap;
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+input {
+    background: black;
+    border: none;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 16px;
+    width: 300px;
+}
+input:focus {
+    outline: none;
+}
