@@ -1,27 +1,31 @@
-# Utiliser une image Python de base
 FROM python:3.11-slim
 
-# Installer curl pour récupérer Stockfish
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get clean
+# Mise à jour et installation des dépendances nécessaires
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    cmake \
+    make \
+    g++ \
+ && rm -rf /var/lib/apt/lists/*
 
-# Créer un dossier pour l'app
+# Cloner et compiler Stockfish
+RUN git clone https://github.com/official-stockfish/Stockfish.git /stockfish
+WORKDIR /stockfish/src
+RUN make build ARCH=x86-64
+
+# Revenir au dossier principal
 WORKDIR /app
 
-# Copier les fichiers
+# Copier les fichiers de l'app Flask
 COPY . /app
-
-# Télécharger Stockfish (AVX2)
-RUN mkdir -p stockfish && \
-    curl -L -o stockfish/stockfish https://github.com/official-stockfish/Stockfish/releases/download/sf_16/stockfish-ubuntu-x86-64-avx2 && \
-    chmod +x stockfish/stockfish
 
 # Installer les dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Rendre exécutable gunicorn
-RUN pip install gunicorn
+# Rendre Stockfish exécutable visible dans l'app
+ENV STOCKFISH_EXEC=/stockfish/src/stockfish
 
-# Lancer l'app Flask avec gunicorn
+# Commande de démarrage
 CMD ["gunicorn", "app:app"]
