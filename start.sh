@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Télécharger Stockfish Linux compatible Render (x86-64-modern)
+# Télécharger Stockfish statique compatible Render
 mkdir -p stockfish
-curl -L -o stockfish/stockfish https://github.com/official-stockfish/Stockfish/releases/download/sf_16/stockfish-linux-x86-64-modern
+curl -L -o stockfish/stockfish https://github.com/official-stockfish/Stockfish/releases/download/sf_16/stockfish-ubuntu-x86-64
 chmod +x stockfish/stockfish
 
 # Lancer l'app Flask
