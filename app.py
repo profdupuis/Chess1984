@@ -9,7 +9,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 
-stockfish = Stockfish(path="stockfish/stockfish.exe")
+stockfish = Stockfish(path="stockfish/stockfish")
 stockfish.set_skill_level(10)
 
 history = []
